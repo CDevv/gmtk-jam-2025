@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bkaacwhnhk0ra" path="res://systems/game_manager/scripts/game_manager.gd" id="1_rhacc"]
 [ext_resource type="PackedScene" uid="uid://bmfnl0ky453yd" path="res://player/scenes/player_controller.tscn" id="2_ddnfi"]
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("player_holder", "level_holder", "enemy_holder", "projectile_holder", "positional_sound_holder", "ui_holder", "camera_holder")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("player_holder", "level_holder", "enemy_holder", "projectile_holder", "positional_sound_holder", "ui_holder", "camera")]
 script = ExtResource("1_rhacc")
 player_holder = NodePath("Player")
 level_holder = NodePath("Level")
@@ -11,7 +11,7 @@ enemy_holder = NodePath("Enemies")
 projectile_holder = NodePath("Projectiles")
 positional_sound_holder = NodePath("PositionalSounds")
 ui_holder = NodePath("UI")
-camera_holder = NodePath("PlayerCamera")
+camera = NodePath("MainCamera")
 player_packed_scene = ExtResource("2_ddnfi")
 
 [node name="Player" type="Node" parent="."]
@@ -32,9 +32,7 @@ unique_name_in_owner = true
 [node name="UI" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="PlayerCamera" type="Node" parent="."]
+[node name="MainCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
-
-[node name="PlayerCamera" type="Camera2D" parent="PlayerCamera"]
 zoom = Vector2(1.45, 1.45)
 process_callback = 0

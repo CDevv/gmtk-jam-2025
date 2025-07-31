@@ -3,16 +3,24 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l23jp"]
 size = Vector2(14, 24)
 
-[node name="PlayerController" type="CharacterBody2D"]
+[node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("player_visuals")]
 collision_layer = 2
 collision_mask = 3
+<<<<<<< Updated upstream
+=======
+script = ExtResource("1_7byhm")
+player_visuals = NodePath("PlayerVisuals")
+>>>>>>> Stashed changes
 
 [node name="NavigationCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l23jp")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="PlayerVisuals" type="Node2D" parent="."]
+unique_name_in_owner = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="PlayerSprite" type="Sprite2D" parent="PlayerVisuals"]
+
+[node name="ColorRect" type="ColorRect" parent="PlayerVisuals"]
 custom_minimum_size = Vector2(14, 28)
 anchors_preset = 8
 anchor_left = 0.5

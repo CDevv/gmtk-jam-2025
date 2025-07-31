@@ -13,6 +13,17 @@ config_version=5
 config/name="GMTK Jam 2025 Project"
 run/main_scene="uid://c0sj30bif8neu"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+<<<<<<< Updated upstream
+=======
+
+[autoload]
+
+Game="*res://systems/global_script/game.gd"
+
+[display]
+
+window/size/mode=3
+>>>>>>> Stashed changes
 
 [dotnet]
 
