@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmfnl0ky453yd"]
+[gd_scene load_steps=3 format=3 uid="uid://bmfnl0ky453yd"]
+
+[ext_resource type="Script" uid="uid://blk8t0vsvoyvc" path="res://player/scripts/player_controller.gd" id="1_7byhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l23jp"]
 size = Vector2(14, 24)
@@ -6,11 +8,8 @@ size = Vector2(14, 24)
 [node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("player_visuals")]
 collision_layer = 2
 collision_mask = 3
-<<<<<<< Updated upstream
-=======
 script = ExtResource("1_7byhm")
 player_visuals = NodePath("PlayerVisuals")
->>>>>>> Stashed changes
 
 [node name="NavigationCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l23jp")

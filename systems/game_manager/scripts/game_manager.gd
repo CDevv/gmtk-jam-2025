@@ -14,29 +14,15 @@ class_name GameManager
 @export var player_packed_scene: PackedScene
 
 func _ready() -> void:
-<<<<<<< Updated upstream
-	add_player(Vector2(0,0))
-=======
 	Game.set_manager(self)
 	add_level('test_level_alpha')
 	add_player(Vector2(32,0))
->>>>>>> Stashed changes
 
 func add_player(pos: Vector2) -> void:
 	var player_to_add: CharacterBody2D = load(player_packed_scene.resource_path).instantiate()
 	player_to_add.global_position = pos
 	player_holder.add_child(player_to_add)
 
-<<<<<<< Updated upstream
-func request_level_to_load() -> void:
-	pass
-
-func level_loading_check() -> void:
-	pass
-
-func add_enemy() -> void:
-	pass
-=======
 func add_level(level_name: String) -> void:
 	if !level_holder.get_children():
 		var resource_full_path = str("res://levels/", level_name, ".tscn")
@@ -59,4 +45,3 @@ func _move_cam_to_target(target: Node2D) -> void:
 
 func get_player() -> Player:
 	return player_holder.get_child(0)
->>>>>>> Stashed changes

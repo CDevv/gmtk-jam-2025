@@ -1,3 +1,25 @@
-[gd_scene format=3 uid="uid://ry14tf0tfeyu"]
+[gd_scene load_steps=2 format=3 uid="uid://ry14tf0tfeyu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ix5o"]
+size = Vector2(312, 16)
 
 [node name="TestLevelAlpha" type="Node2D"]
+
+[node name="Marker" type="Marker2D" parent="."]
+position = Vector2(64, 48)
+
+[node name="EnemyMarker" type="Marker2D" parent="."]
+position = Vector2(160, 48)
+
+[node name="StaticCollision" type="StaticBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="StaticCollision"]
+offset_top = 64.0
+offset_right = 312.0
+offset_bottom = 80.0
+color = Color(0, 0.555651, 0.556402, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticCollision"]
+position = Vector2(156, 72)
+shape = SubResource("RectangleShape2D_8ix5o")
+debug_color = Color(1.82897e-06, 0.446248, 0.522775, 0.42)
