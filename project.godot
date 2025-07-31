@@ -13,11 +13,14 @@ config_version=5
 config/name="GMTK Jam 2025 Project"
 run/main_scene="uid://c0sj30bif8neu"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [autoload]
 
-Game="*res://game.gd"
+Game="*res://systems/global_script/game.gd"
+
+[display]
+
+window/size/mode=3
 
 [dotnet]
 
