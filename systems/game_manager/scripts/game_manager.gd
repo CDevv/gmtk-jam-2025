@@ -14,8 +14,10 @@ class_name GameManager
 @export var player_packed_scene: PackedScene
 
 func _ready() -> void:
+	Game.set_manager(self)
 	add_level()
 	add_player(Vector2(0,0))
+	add_enemy(Vector2(260, 48))
 
 func add_player(pos: Vector2) -> void:
 	var player_to_add: CharacterBody2D = load(player_packed_scene.resource_path).instantiate()
@@ -34,5 +36,10 @@ func request_level_to_load() -> void:
 func level_loading_check() -> void:
 	pass
 
-func add_enemy() -> void:
-	pass
+func add_enemy(pos: Vector2) -> void:
+	var enemy_scene = load("res://enemies/blob/scenes/enemy.tscn").instantiate()
+	enemy_scene.global_position = pos
+	enemy_holder.add_child(enemy_scene)
+	
+func get_player() -> Player:
+	return player_holder.get_child(0)
