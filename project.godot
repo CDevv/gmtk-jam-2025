@@ -15,6 +15,10 @@ run/main_scene="uid://c0sj30bif8neu"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Game="*res://game.gd"
+
 [dotnet]
 
 project/assembly_name="GMTK Jam 2025"
