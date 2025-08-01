@@ -6,7 +6,10 @@
 size = Vector2(16, 24)
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 9
+collision_mask = 17
 script = ExtResource("1_edq6g")
+move_speed = 100
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -24,3 +27,9 @@ color = Color(1, 0.525908, 0.460418, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hc4ed")
+debug_color = Color(0.315564, 0.0487061, 0.103106, 0.42)
+
+[node name="AttackTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

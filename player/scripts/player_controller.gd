@@ -1,15 +1,14 @@
 class_name Player
-extends CharacterBody2D
+extends Entity
 
 @export_category('Speed and power variables')
-@export var gravity = 1500
-@export var move_speed = 200
 @export var jump_velocity = 500
 
 @export_category('Exported node references')
 @export var player_visuals: Node2D
 
 var has_wings: bool = true
+var bullet_delayed: bool = false
 
 func _get_input_direction() -> Vector2:
 	var dir: Vector2 = Vector2(Input.get_axis("move left", "move right"), 0)
@@ -56,3 +55,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		_air_physics(delta)
 	move_and_slide()
+	
+func _input(event: InputEvent) -> void:
+	if not bullet_delayed:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			Game.get_manager().add_projectile(position, get_global_mouse_position(), Bullet.target_type.ENEMY)
+			bullet_delayed = true
+			$Timer.start()
+		
+func bullet_delay_over() -> void:
+	bullet_delayed = false
