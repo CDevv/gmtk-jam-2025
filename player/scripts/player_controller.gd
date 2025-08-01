@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var player_visuals: Node2D
 
 var has_wings: bool = true
+var bullet_delayed: bool = false
 
 func _get_input_direction() -> Vector2:
 	var dir: Vector2 = Vector2(Input.get_axis("move left", "move right"), 0)
@@ -58,5 +59,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _input(event: InputEvent) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		Game.get_manager().add_projectile(position, get_global_mouse_position())
+	if not bullet_delayed:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			Game.get_manager().add_projectile(position, get_global_mouse_position())
+			bullet_delayed = true
+			$Timer.start()
+		
+func bullet_delay_over() -> void:
+	bullet_delayed = false

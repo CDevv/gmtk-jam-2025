@@ -2,8 +2,13 @@ extends CharacterBody2D
 class_name Enemy
 
 @export var gravity = 2500
-@export var health = 50
+@export var health: int = 50
 @export var move_change = 100
+
+func damage(damage: int) -> void:
+	health -= damage
+	if (health <= 0):
+		queue_free()
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta

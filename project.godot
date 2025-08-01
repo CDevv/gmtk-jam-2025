@@ -63,6 +63,7 @@ attack={
 2d_physics/layer_2="navigation collision shapes"
 2d_physics/layer_3="player hitbox"
 2d_physics/layer_4="enemy hitbox"
+2d_physics/layer_5="projectile"
 
 [physics]
 

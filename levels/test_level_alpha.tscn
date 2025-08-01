@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ry14tf0tfeyu"]
+[gd_scene load_steps=3 format=3 uid="uid://ry14tf0tfeyu"]
+
+[ext_resource type="PackedScene" uid="uid://fdtudb722w5c" path="res://enemies/blob/scenes/enemy.tscn" id="1_x3ixi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ix5o"]
-size = Vector2(312, 16)
+size = Vector2(896, 16)
 
 [node name="TestLevelAlpha" type="Node2D"]
 
@@ -15,11 +17,14 @@ position = Vector2(160, 48)
 
 [node name="ColorRect" type="ColorRect" parent="StaticCollision"]
 offset_top = 64.0
-offset_right = 312.0
+offset_right = 896.0
 offset_bottom = 80.0
 color = Color(0, 0.555651, 0.556402, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticCollision"]
-position = Vector2(156, 72)
+position = Vector2(448, 72)
 shape = SubResource("RectangleShape2D_8ix5o")
 debug_color = Color(1.82897e-06, 0.446248, 0.522775, 0.42)
+
+[node name="Enemy" parent="." instance=ExtResource("1_x3ixi")]
+position = Vector2(160, 48)

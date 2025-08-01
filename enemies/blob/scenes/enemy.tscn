@@ -6,6 +6,8 @@
 size = Vector2(16, 24)
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 9
+collision_mask = 17
 script = ExtResource("1_edq6g")
 
 [node name="ColorRect" type="ColorRect" parent="."]

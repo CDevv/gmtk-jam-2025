@@ -24,7 +24,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 17
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_i7faf")
 debug_color = Color(0.865406, 0.307482, 0.471322, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

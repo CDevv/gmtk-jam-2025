@@ -32,3 +32,10 @@ offset_right = 7.0
 offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.7
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="bullet_delay_over"]
