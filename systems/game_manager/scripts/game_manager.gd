@@ -45,3 +45,9 @@ func _move_cam_to_target(target: Node2D) -> void:
 
 func get_player() -> Player:
 	return player_holder.get_child(0)
+	
+func add_projectile(pos: Vector2, destination: Vector2) -> void:
+	var bullet_scene = load("res://projectiles/bullet/scenes/bullet.tscn").instantiate() as Bullet
+	bullet_scene.position = pos
+	bullet_scene.destination = destination
+	projectile_holder.add_child(bullet_scene)

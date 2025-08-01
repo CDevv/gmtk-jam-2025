@@ -56,3 +56,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		_air_physics(delta)
 	move_and_slide()
+	
+func _input(event: InputEvent) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		Game.get_manager().add_projectile(position, get_global_mouse_position())
