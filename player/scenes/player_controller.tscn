@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://rsl5mlkr55w6" path="res://resources/player/sheetplayer.png" id="2_fpjon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l23jp"]
-size = Vector2(14, 24)
+size = Vector2(32, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpjon"]
 atlas = ExtResource("2_fpjon")
@@ -95,14 +95,15 @@ player_visuals = NodePath("PlayerVisuals")
 gravity = 1500
 
 [node name="NavigationCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_l23jp")
 
 [node name="PlayerVisuals" type="Node2D" parent="."]
 unique_name_in_owner = true
-
-[node name="PlayerSprite" type="Sprite2D" parent="PlayerVisuals"]
+scale = Vector2(2, 2)
 
 [node name="ColorRect" type="ColorRect" parent="PlayerVisuals"]
+visible = false
 custom_minimum_size = Vector2(14, 28)
 anchors_preset = 8
 anchor_left = 0.5
@@ -116,8 +117,8 @@ offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerVisuals"]
-visible = false
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="PlayerVisuals"]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_5e0jp")
 animation = &"idle"
 
