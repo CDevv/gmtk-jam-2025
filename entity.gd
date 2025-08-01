@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var gravity: int = 2500
 @export var move_speed = 200
 
-func damage(damage: int) -> void:
+func take_damage(damage: int) -> void:
 	health -= damage
 	if (health <= 0):
 		queue_free()

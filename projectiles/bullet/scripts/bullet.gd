@@ -24,9 +24,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player and type == target_type.PLAYER:
 		damage_target(body)
 
-func set_type(type: target_type) -> void:
-	self.type = type
+func set_target_type(entity_type: target_type) -> void:
+	self.type = entity_type
 
 func damage_target(body: Entity) -> void:
-	body.damage(damage)
+	body.take_damage(damage)
 	queue_free()
