@@ -8,7 +8,7 @@ size = Vector2(16, 8)
 [node name="Bullet" type="Node2D"]
 rotation = -1.5708
 script = ExtResource("1_v33ap")
-speed = 200
+speed = 1200
 type = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
