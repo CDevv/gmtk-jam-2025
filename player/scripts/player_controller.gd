@@ -1,9 +1,7 @@
 class_name Player
-extends CharacterBody2D
+extends Entity
 
 @export_category('Speed and power variables')
-@export var gravity = 1500
-@export var move_speed = 200
 @export var jump_velocity = 500
 
 @export_category('Exported node references')
@@ -61,7 +59,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if not bullet_delayed:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			Game.get_manager().add_projectile(position, get_global_mouse_position())
+			Game.get_manager().add_projectile(position, get_global_mouse_position(), Bullet.target_type.ENEMY)
 			bullet_delayed = true
 			$Timer.start()
 		
