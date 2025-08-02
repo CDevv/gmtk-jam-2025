@@ -24,6 +24,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player and type == target_type.PLAYER:
 		damage_target(body)
 
+func set_damage(new_damage: int) -> void:
+	self.damage = new_damage
+
 func set_target_type(entity_type: target_type) -> void:
 	self.type = entity_type
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://fdtudb722w5c"]
+[gd_scene load_steps=5 format=3 uid="uid://fdtudb722w5c"]
 
 [ext_resource type="Script" uid="uid://6m4makbt0whq" path="res://enemies/blob/scripts/enemy.gd" id="1_edq6g"]
 [ext_resource type="SpriteFrames" uid="uid://2ws2huumcejy" path="res://resources/enemies/zombie-anims.tres" id="2_exaow"]
@@ -6,13 +6,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hc4ed"]
 size = Vector2(32, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exaow"]
+size = Vector2(80, 40)
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 9
 collision_mask = 17
 script = ExtResource("1_edq6g")
+type = 0
+health = 5
 move_speed = 100
+attack_power = 1
 
 [node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -36,9 +43,17 @@ sprite_frames = ExtResource("2_exaow")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_hc4ed")
 debug_color = Color(0.315564, 0.0487061, 0.103106, 0.42)
 
+[node name="MeleeArea" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="MeleeShape" type="CollisionShape2D" parent="MeleeArea"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_exaow")
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="MeleeArea" to="." method="_on_melee_body_entered"]
+[connection signal="body_exited" from="MeleeArea" to="." method="_on_melee_body_exited"]

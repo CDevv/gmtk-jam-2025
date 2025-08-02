@@ -70,7 +70,7 @@ func _directional_tilt_and_heading(delta: float) -> void:
 func _shoot_check() -> void:
 	if not bullet_delayed:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			Game.get_manager().add_projectile(position, get_global_mouse_position(), Bullet.target_type.ENEMY)
+			Game.get_manager().add_projectile(position, get_global_mouse_position(), Bullet.target_type.ENEMY, attack_power)
 			bullet_delayed = true
 			await get_tree().create_timer(attack_rate).timeout
 			bullet_delayed = false
@@ -84,3 +84,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		_air_physics(delta)
 	move_and_slide()
+	
+func take_damage(damage: int) -> void:
+	super.take_damage(damage)
+	var dmg_tween: Tween = create_tween()
+	dmg_tween.set_parallel(false)
+	dmg_tween.tween_property(%PlayerSprite, "modulate", Color.FIREBRICK, 0.25)
+	dmg_tween.tween_property(%PlayerSprite, "modulate", Color.WHITE, 0.25)
+	dmg_tween.play()
