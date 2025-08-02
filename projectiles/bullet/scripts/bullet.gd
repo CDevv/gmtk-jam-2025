@@ -14,6 +14,8 @@ func _ready() -> void:
 	rotation = position.angle_to(destination)
 	direction = position.direction_to(destination)
 	look_at(destination)
+	await get_tree().create_timer(6.5).timeout
+	queue_free()
 
 func _physics_process(delta: float) -> void:
 	position += direction * delta * speed

@@ -6,7 +6,6 @@ class_name GameManager
 @export var level_holder: Node
 @export var enemy_holder: Node
 @export var projectile_holder: Node
-@export var positional_sound_holder: Node
 @export var ui_holder: Node
 @export var camera: Camera2D
 
@@ -45,7 +44,7 @@ func _move_cam_to_target(target: Node2D) -> void:
 
 func get_player() -> Player:
 	return player_holder.get_child(0)
-	
+
 func add_projectile(pos: Vector2, destination: Vector2, type: Bullet.target_type, damage: int) -> void:
 	var bullet_scene = load("res://projectiles/bullet/scenes/bullet.tscn").instantiate() as Bullet
 	bullet_scene.position = pos

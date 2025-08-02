@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		_air_physics(delta)
 	move_and_slide()
-	
+
 func take_damage(damage: int) -> void:
 	super.take_damage(damage)
 	var dmg_tween: Tween = create_tween()

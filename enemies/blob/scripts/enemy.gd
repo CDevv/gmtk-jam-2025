@@ -18,12 +18,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
-	
+
 	velocity.x = 0
-	
+
 	var player_x = Game.get_manager().get_player().position.x
 	var this_x = position.x
-	
+
 	if walking:
 		sprite.play("walk")
 		if player_x > this_x:
@@ -48,13 +48,13 @@ func _on_melee_body_entered(body: Node2D) -> void:
 		target = body
 		walking = false
 		%AttackTimer.start()
-		
+
 func _on_melee_body_exited(body: Node2D) -> void:
 	if body is Player:
 		%AttackTimer.stop()
 		target = null
-		walking = false
-	
+		walking = true
+
 func take_damage(damage: int) -> void:
 	health -= damage
 	if (health <= 0):
