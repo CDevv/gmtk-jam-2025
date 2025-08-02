@@ -1,0 +1,37 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dak5kx3uapxgb"]
+
+[ext_resource type="Texture2D" uid="uid://dylijxn65lvda" path="res://resources/enemies/sheetenemies.png" id="1_b2xmq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4j3fi"]
+atlas = ExtResource("1_b2xmq")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi0ud"]
+atlas = ExtResource("1_b2xmq")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nivcr"]
+atlas = ExtResource("1_b2xmq")
+region = Rect2(72, 48, 24, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4j3fi")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi0ud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nivcr")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

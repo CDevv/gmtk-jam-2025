@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://fdtudb722w5c"]
+[gd_scene load_steps=4 format=3 uid="uid://fdtudb722w5c"]
 
 [ext_resource type="Script" uid="uid://6m4makbt0whq" path="res://enemies/blob/scripts/enemy.gd" id="1_edq6g"]
+[ext_resource type="SpriteFrames" uid="uid://2ws2huumcejy" path="res://resources/enemies/zombie-anims.tres" id="2_exaow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hc4ed"]
-size = Vector2(16, 24)
+size = Vector2(32, 40)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 9
@@ -11,25 +12,33 @@ collision_mask = 17
 script = ExtResource("1_edq6g")
 move_speed = 100
 
+[node name="AttackTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -12.0
-offset_right = 8.0
-offset_bottom = 12.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.525908, 0.460418, 1)
 
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_exaow")
+animation = &"walk"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_hc4ed")
 debug_color = Color(0.315564, 0.0487061, 0.103106, 0.42)
-
-[node name="AttackTimer" type="Timer" parent="."]
-autostart = true
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

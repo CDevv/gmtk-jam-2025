@@ -1,0 +1,65 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://2ws2huumcejy"]
+
+[ext_resource type="Texture2D" uid="uid://dylijxn65lvda" path="res://resources/enemies/sheetenemies.png" id="1_y7p1g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exaow"]
+atlas = ExtResource("1_y7p1g")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjmoa"]
+atlas = ExtResource("1_y7p1g")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqdbx"]
+atlas = ExtResource("1_y7p1g")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvxdw"]
+atlas = ExtResource("1_y7p1g")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxiji"]
+atlas = ExtResource("1_y7p1g")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqv8b"]
+atlas = ExtResource("1_y7p1g")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myq05"]
+atlas = ExtResource("1_y7p1g")
+region = Rect2(48, 0, 24, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exaow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjmoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqdbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvxdw")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxiji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqv8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myq05")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
