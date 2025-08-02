@@ -117,7 +117,9 @@ collision_layer = 6
 collision_mask = 19
 script = ExtResource("1_7byhm")
 player_visuals = NodePath("PlayerVisuals")
+health = 5
 gravity = 1500
+attack_power = 1
 
 [node name="NavigationCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l23jp")
