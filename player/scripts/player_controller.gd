@@ -84,3 +84,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		_air_physics(delta)
 	move_and_slide()
+	
+func take_damage(damage: int) -> void:
+	super.take_damage(damage)
+	var dmg_tween: Tween = create_tween()
+	dmg_tween.set_parallel(false)
+	dmg_tween.tween_property(%PlayerSprite, "modulate", Color.FIREBRICK, 0.25)
+	dmg_tween.tween_property(%PlayerSprite, "modulate", Color.WHITE, 0.25)
+	dmg_tween.play()
