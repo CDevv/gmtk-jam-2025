@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7mkrv21ac2bg"
+path="res://.godot/imported/delusional specter.mp3-a25cdd5ad2bb50694bbcf54bf489793e.mp3str"
+
+[deps]
+
+source_file="res://music/level1/delusional specter.mp3"
+dest_files=["res://.godot/imported/delusional specter.mp3-a25cdd5ad2bb50694bbcf54bf489793e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

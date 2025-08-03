@@ -7,10 +7,14 @@ enum target_type { PLAYER, ENEMY }
 @export var speed: int = 100
 @export var destination: Vector2
 @export var type: target_type
+var sprite: AnimatedSprite2D
 
 var direction: Vector2
 
 func _ready() -> void:
+	sprite = get_node("Sprite")
+	sprite.play()
+	
 	rotation = position.angle_to(destination)
 	direction = position.direction_to(destination)
 	look_at(destination)

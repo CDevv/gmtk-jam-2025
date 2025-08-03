@@ -12,15 +12,22 @@ class_name GameManager
 @export_category('Predefined spawnable scenes')
 @export var player_packed_scene: PackedScene
 
+enum EnemyType { ZOMBIE, GHOST, KNIGHT_GHOST, FAT_GHOST }
+
 func _ready() -> void:
 	Game.set_manager(self)
 	add_level('test_level_alpha')
-	add_player(Vector2(32,0))
+	add_player_on_marker()
+	add_enemies_on_level()
 
 func add_player(pos: Vector2) -> void:
 	var player_to_add: CharacterBody2D = load(player_packed_scene.resource_path).instantiate()
 	player_to_add.global_position = pos
 	player_holder.add_child(player_to_add)
+
+func add_player_on_marker() -> void:
+	var marker_pos = level_holder.get_child(0).get_node("Marker").position
+	add_player(marker_pos)
 
 func add_level(level_name: String) -> void:
 	if !level_holder.get_children():
@@ -34,10 +41,22 @@ func add_level(level_name: String) -> void:
 		var level_scene = load(resource_full_path).instantiate()
 		level_holder.add_child(level_scene)
 
-func add_enemy(pos: Vector2, enemy_schene_path: String) -> void:
-	var enemy_scene = load(enemy_schene_path).instantiate()
+func add_enemy(pos: Vector2, enemy_name: String) -> void:
+	var full_enemy_path = str("res://enemies/", enemy_name, "/scenes/", enemy_name, ".tscn")
+	var enemy_scene = load(full_enemy_path).instantiate()
 	enemy_scene.global_position = pos
 	enemy_holder.add_child(enemy_scene)
+
+func add_enemies_on_level() -> void:
+	var level = level_holder.get_child(0)
+	var enemy_min_x = level.get_node("EnemyMarkerStart").position.x
+	var enemy_max_x = level.get_node("EnemyMarkerEnd").position.x
+	var enemy_y = level.get_node("EnemyMarkerStart").position.y
+	for i in range(1, 10):
+		var chosen_x = randi_range(enemy_min_x, enemy_max_x)
+		var chosen_pos = Vector2(chosen_x, enemy_y)
+		var chosen_type = EnemyType.keys().pick_random().to_lower()
+		add_enemy(chosen_pos, chosen_type)
 
 func _move_cam_to_target(target: Node2D) -> void:
 	camera.global_position = target.global_position
@@ -45,10 +64,10 @@ func _move_cam_to_target(target: Node2D) -> void:
 func get_player() -> Player:
 	return player_holder.get_child(0)
 
-func add_projectile(pos: Vector2, destination: Vector2, type: Bullet.target_type, damage: int) -> void:
-	var bullet_scene = load("res://projectiles/bullet/scenes/bullet.tscn").instantiate() as Bullet
+func add_projectile(pos: Vector2, destination: Vector2, name: String) -> Bullet:
+	var bullet_path = str("res://projectiles/", name, "/scenes/", name, ".tscn")
+	var bullet_scene = load(bullet_path).instantiate() as Bullet
 	bullet_scene.position = pos
 	bullet_scene.destination = destination
-	bullet_scene.set_target_type(type)
-	bullet_scene.set_damage(damage)
 	projectile_holder.add_child(bullet_scene)
+	return bullet_scene

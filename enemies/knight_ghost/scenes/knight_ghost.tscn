@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0l7wk7o3otje"]
+
+[ext_resource type="PackedScene" uid="uid://fdtudb722w5c" path="res://enemies/base_enemy/scenes/enemy.tscn" id="1_eqmlv"]
+[ext_resource type="SpriteFrames" uid="uid://dak5kx3uapxgb" path="res://resources/enemies/knight-ghost.tres" id="2_p1bkr"]
+
+[node name="KnightGhost" instance=ExtResource("1_eqmlv")]
+is_flying = true
+sprite_frames = ExtResource("2_p1bkr")
