@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://ry14tf0tfeyu"]
+[gd_scene load_steps=6 format=3 uid="uid://ry14tf0tfeyu"]
 
 [ext_resource type="Texture2D" uid="uid://cwo0r5gh65nu4" path="res://resources/parallax/1_back.png" id="1_o30gr"]
+[ext_resource type="AudioStream" uid="uid://c7mkrv21ac2bg" path="res://music/level1/delusional specter.mp3" id="1_wuqla"]
 [ext_resource type="Texture2D" uid="uid://c4ye7hjlwut41" path="res://resources/parallax/1_mountains.png" id="1_x3ixi"]
 [ext_resource type="Texture2D" uid="uid://cw84m8ewcqslg" path="res://resources/parallax/1_top.png" id="3_wuqla"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ix5o"]
-size = Vector2(3496, 16)
+size = Vector2(3496, 440)
 
 [node name="TestLevelAlpha" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_wuqla")
+autoplay = true
+parameters/looping = true
 
 [node name="Parallax" type="Node2D" parent="."]
 z_index = -1
@@ -70,6 +76,6 @@ offset_bottom = 80.0
 color = Color(0, 0.555651, 0.556402, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticCollision"]
-position = Vector2(1748, 72)
+position = Vector2(1748, 284)
 shape = SubResource("RectangleShape2D_8ix5o")
 debug_color = Color(1.82897e-06, 0.446248, 0.522775, 0.42)
