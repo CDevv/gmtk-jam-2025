@@ -12,16 +12,22 @@ class_name GameManager
 @export_category('Predefined spawnable scenes')
 @export var player_packed_scene: PackedScene
 
+enum EnemyType { ZOMBIE, GHOST, KNIGHT_GHOST, FAT_GHOST }
+
 func _ready() -> void:
 	Game.set_manager(self)
 	add_level('test_level_alpha')
-	add_player(Vector2(32,0))
-	#add_enemies_on_level()
+	add_player_on_marker()
+	add_enemies_on_level()
 
 func add_player(pos: Vector2) -> void:
 	var player_to_add: CharacterBody2D = load(player_packed_scene.resource_path).instantiate()
 	player_to_add.global_position = pos
 	player_holder.add_child(player_to_add)
+
+func add_player_on_marker() -> void:
+	var marker_pos = level_holder.get_child(0).get_node("Marker").position
+	add_player(marker_pos)
 
 func add_level(level_name: String) -> void:
 	if !level_holder.get_children():
@@ -45,10 +51,12 @@ func add_enemies_on_level() -> void:
 	var level = level_holder.get_child(0)
 	var enemy_min_x = level.get_node("EnemyMarkerStart").position.x
 	var enemy_max_x = level.get_node("EnemyMarkerEnd").position.x
+	var enemy_y = level.get_node("EnemyMarkerStart").position.y
 	for i in range(1, 10):
 		var chosen_x = randi_range(enemy_min_x, enemy_max_x)
-		var chosen_pos = Vector2(chosen_x, 48)
-		add_enemy(chosen_pos, "zombie")
+		var chosen_pos = Vector2(chosen_x, enemy_y)
+		var chosen_type = EnemyType.keys().pick_random().to_lower()
+		add_enemy(chosen_pos, chosen_type)
 
 func _move_cam_to_target(target: Node2D) -> void:
 	camera.global_position = target.global_position

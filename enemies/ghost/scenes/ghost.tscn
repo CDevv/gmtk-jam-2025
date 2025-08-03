@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4o7uwe5hjori"]
+
+[ext_resource type="PackedScene" uid="uid://fdtudb722w5c" path="res://enemies/base_enemy/scenes/enemy.tscn" id="1_g6g2h"]
+[ext_resource type="SpriteFrames" uid="uid://c6f1jhbva3xvr" path="res://resources/enemies/regular-ghost.tres" id="2_qubmc"]
+
+[node name="RegularGhost" instance=ExtResource("1_g6g2h")]
+is_flying = true
+sprite_frames = ExtResource("2_qubmc")

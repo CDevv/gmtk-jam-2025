@@ -31,3 +31,4 @@ unique_name_in_owner = true
 [node name="MainCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
 process_callback = 0
+limit_bottom = 0

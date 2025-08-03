@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cw84m8ewcqslg" path="res://resources/parallax/1_top.png" id="3_wuqla"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ix5o"]
-size = Vector2(896, 16)
+size = Vector2(3496, 16)
 
 [node name="TestLevelAlpha" type="Node2D"]
 
@@ -26,7 +26,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1504, 1442)
 
 [node name="Parallax2D" type="Parallax2D" parent="Parallax"]
-scroll_scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.5, 0.2)
 repeat_size = Vector2(896, 0)
 repeat_times = 3
 
@@ -39,7 +39,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1792, 1442)
 
 [node name="Parallax2D3" type="Parallax2D" parent="Parallax"]
-scroll_scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.5, 0.2)
 repeat_size = Vector2(896, 0)
 repeat_times = 3
 
@@ -52,23 +52,24 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1792, 1442)
 
 [node name="Marker" type="Marker2D" parent="."]
-position = Vector2(64, 48)
+position = Vector2(64, -32)
 
 [node name="EnemyMarkerStart" type="Marker2D" parent="."]
-position = Vector2(160, 48)
+position = Vector2(160, -32)
 
 [node name="EnemyMarkerEnd" type="Marker2D" parent="."]
-position = Vector2(824, 48)
+position = Vector2(3280, -32)
 
 [node name="StaticCollision" type="StaticBody2D" parent="."]
+position = Vector2(0, -80)
 
 [node name="ColorRect" type="ColorRect" parent="StaticCollision"]
 offset_top = 64.0
-offset_right = 896.0
+offset_right = 3496.0
 offset_bottom = 80.0
 color = Color(0, 0.555651, 0.556402, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticCollision"]
-position = Vector2(448, 72)
+position = Vector2(1748, 72)
 shape = SubResource("RectangleShape2D_8ix5o")
 debug_color = Color(1.82897e-06, 0.446248, 0.522775, 0.42)
