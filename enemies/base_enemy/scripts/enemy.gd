@@ -66,7 +66,9 @@ func _physics_process(delta: float) -> void:
 func _on_attack_timer_timeout() -> void:
 	if type == AttackType.RANGED:
 		var player_pos = Game.get_manager().get_player().global_position
-		Game.get_manager().add_projectile(position, player_pos, Bullet.target_type.PLAYER, attack_power)
+		var bullet: Bullet = Game.get_manager().add_projectile(position, player_pos, "fat_ghost_bullet")
+		bullet.set_damage(attack_power)
+		bullet.set_target_type(Bullet.target_type.PLAYER)
 	else:
 		if target:
 			target.take_damage(attack_power)

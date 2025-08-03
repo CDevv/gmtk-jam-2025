@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3fikxi4jtcxl"]
+
+[ext_resource type="PackedScene" uid="uid://t154r6sch4oy" path="res://projectiles/bullet/scenes/bullet.tscn" id="1_mqgkw"]
+[ext_resource type="Texture2D" uid="uid://bvwgmdxyvykw" path="res://resources/projectiles/sheetprojectiles.png" id="2_364a0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0djl"]
+atlas = ExtResource("2_364a0")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k1ws"]
+atlas = ExtResource("2_364a0")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ihr7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0djl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k1ws")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FatGhostBullet" instance=ExtResource("1_mqgkw")]
+
+[node name="Sprite" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_2ihr7")

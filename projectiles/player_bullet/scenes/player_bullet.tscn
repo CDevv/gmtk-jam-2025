@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgx07n7n5metc"]
+
+[ext_resource type="PackedScene" uid="uid://t154r6sch4oy" path="res://projectiles/bullet/scenes/bullet.tscn" id="1_smsp7"]
+[ext_resource type="Texture2D" uid="uid://bvwgmdxyvykw" path="res://resources/projectiles/sheetprojectiles.png" id="2_lhrvq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f0ad"]
+atlas = ExtResource("2_lhrvq")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wsib6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f0ad")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bullet" instance=ExtResource("1_smsp7")]
+
+[node name="Sprite" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_wsib6")

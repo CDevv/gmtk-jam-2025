@@ -1,9 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://t154r6sch4oy"]
+[gd_scene load_steps=9 format=3 uid="uid://t154r6sch4oy"]
 
 [ext_resource type="Script" uid="uid://da0v1jfj0x87a" path="res://projectiles/bullet/scripts/bullet.gd" id="1_v33ap"]
+[ext_resource type="Texture2D" uid="uid://bvwgmdxyvykw" path="res://resources/projectiles/sheetprojectiles.png" id="2_411de"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwvg2"]
+atlas = ExtResource("2_411de")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rps2l"]
+atlas = ExtResource("2_411de")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4sov"]
+atlas = ExtResource("2_411de")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv21j"]
+atlas = ExtResource("2_411de")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l2qbk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwvg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rps2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4sov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uv21j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7faf"]
-size = Vector2(16, 8)
+size = Vector2(32.0001, 15.9999)
 
 [node name="Bullet" type="Node2D"]
 rotation = -1.5708
@@ -12,6 +49,7 @@ speed = 1200
 type = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -24,11 +62,16 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_l2qbk")
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 17
 collision_mask = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4.76838e-07, 2.38417e-07)
 shape = SubResource("RectangleShape2D_i7faf")
 debug_color = Color(0.865406, 0.307482, 0.471322, 0.42)
 
