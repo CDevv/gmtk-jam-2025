@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ry14tf0tfeyu"]
 
-[ext_resource type="PackedScene" uid="uid://fdtudb722w5c" path="res://enemies/base_enemy/scenes/enemy.tscn" id="1_x3ixi"]
+[ext_resource type="PackedScene" uid="uid://budr6pl4k7ktv" path="res://enemies/fat_ghost/scenes/fat_ghost.tscn" id="1_x3ixi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ix5o"]
 size = Vector2(896, 16)
@@ -26,5 +26,5 @@ position = Vector2(448, 72)
 shape = SubResource("RectangleShape2D_8ix5o")
 debug_color = Color(1.82897e-06, 0.446248, 0.522775, 0.42)
 
-[node name="Enemy" parent="." instance=ExtResource("1_x3ixi")]
+[node name="FatGhost" parent="." instance=ExtResource("1_x3ixi")]
 position = Vector2(160, 40)

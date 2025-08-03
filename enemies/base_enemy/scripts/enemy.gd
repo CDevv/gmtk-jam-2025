@@ -48,7 +48,8 @@ func _ground_physics(_delta: float) -> void:
 func _air_physics(delta: float) -> void:
 	var player_pos = Game.get_manager().get_player().position
 	var direction = position.direction_to(player_pos)
-	velocity = direction * delta * move_speed * 100
+	if walking:
+		velocity = direction * delta * move_speed * 100
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
@@ -78,7 +79,8 @@ func _on_melee_body_entered(body: Node2D) -> void:
 
 func _on_melee_body_exited(body: Node2D) -> void:
 	if body is Player:
-		%AttackTimer.stop()
+		if type == AttackType.MELEE:
+			%AttackTimer.stop()
 		target = null
 		walking = true
 
