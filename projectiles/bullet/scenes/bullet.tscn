@@ -44,6 +44,7 @@ size = Vector2(32.0001, 15.9999)
 
 [node name="Bullet" type="Node2D"]
 rotation = -1.5708
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_v33ap")
 speed = 1200
 type = 1

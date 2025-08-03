@@ -1,17 +1,64 @@
-[gd_scene load_steps=3 format=3 uid="uid://ry14tf0tfeyu"]
+[gd_scene load_steps=5 format=3 uid="uid://ry14tf0tfeyu"]
 
-[ext_resource type="PackedScene" uid="uid://budr6pl4k7ktv" path="res://enemies/fat_ghost/scenes/fat_ghost.tscn" id="1_x3ixi"]
+[ext_resource type="Texture2D" uid="uid://cwo0r5gh65nu4" path="res://resources/parallax/1_back.png" id="1_o30gr"]
+[ext_resource type="Texture2D" uid="uid://c4ye7hjlwut41" path="res://resources/parallax/1_mountains.png" id="1_x3ixi"]
+[ext_resource type="Texture2D" uid="uid://cw84m8ewcqslg" path="res://resources/parallax/1_top.png" id="3_wuqla"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ix5o"]
 size = Vector2(896, 16)
 
 [node name="TestLevelAlpha" type="Node2D"]
 
+[node name="Parallax" type="Node2D" parent="."]
+z_index = -1
+
+[node name="Parallax2D2" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(720, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D2"]
+texture_repeat = 2
+position = Vector2(376, 360)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_o30gr")
+region_enabled = true
+region_rect = Rect2(0, 0, 1504, 1442)
+
+[node name="Parallax2D" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(896, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D"]
+texture_repeat = 2
+position = Vector2(448, 360)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x3ixi")
+region_enabled = true
+region_rect = Rect2(0, 0, 1792, 1442)
+
+[node name="Parallax2D3" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(896, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D3"]
+texture_repeat = 2
+position = Vector2(448, 360)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_wuqla")
+region_enabled = true
+region_rect = Rect2(0, 0, 1792, 1442)
+
 [node name="Marker" type="Marker2D" parent="."]
 position = Vector2(64, 48)
 
-[node name="EnemyMarker" type="Marker2D" parent="."]
+[node name="EnemyMarkerStart" type="Marker2D" parent="."]
 position = Vector2(160, 48)
+
+[node name="EnemyMarkerEnd" type="Marker2D" parent="."]
+position = Vector2(824, 48)
 
 [node name="StaticCollision" type="StaticBody2D" parent="."]
 
@@ -25,6 +72,3 @@ color = Color(0, 0.555651, 0.556402, 1)
 position = Vector2(448, 72)
 shape = SubResource("RectangleShape2D_8ix5o")
 debug_color = Color(1.82897e-06, 0.446248, 0.522775, 0.42)
-
-[node name="FatGhost" parent="." instance=ExtResource("1_x3ixi")]
-position = Vector2(160, 40)

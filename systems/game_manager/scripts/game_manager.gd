@@ -16,6 +16,7 @@ func _ready() -> void:
 	Game.set_manager(self)
 	add_level('test_level_alpha')
 	add_player(Vector2(32,0))
+	#add_enemies_on_level()
 
 func add_player(pos: Vector2) -> void:
 	var player_to_add: CharacterBody2D = load(player_packed_scene.resource_path).instantiate()
@@ -34,10 +35,20 @@ func add_level(level_name: String) -> void:
 		var level_scene = load(resource_full_path).instantiate()
 		level_holder.add_child(level_scene)
 
-func add_enemy(pos: Vector2, enemy_schene_path: String) -> void:
-	var enemy_scene = load(enemy_schene_path).instantiate()
+func add_enemy(pos: Vector2, enemy_name: String) -> void:
+	var full_enemy_path = str("res://enemies/", enemy_name, "/scenes/", enemy_name, ".tscn")
+	var enemy_scene = load(full_enemy_path).instantiate()
 	enemy_scene.global_position = pos
 	enemy_holder.add_child(enemy_scene)
+
+func add_enemies_on_level() -> void:
+	var level = level_holder.get_child(0)
+	var enemy_min_x = level.get_node("EnemyMarkerStart").position.x
+	var enemy_max_x = level.get_node("EnemyMarkerEnd").position.x
+	for i in range(1, 10):
+		var chosen_x = randi_range(enemy_min_x, enemy_max_x)
+		var chosen_pos = Vector2(chosen_x, 48)
+		add_enemy(chosen_pos, "zombie")
 
 func _move_cam_to_target(target: Node2D) -> void:
 	camera.global_position = target.global_position
