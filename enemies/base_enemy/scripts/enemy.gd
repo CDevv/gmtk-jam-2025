@@ -50,7 +50,7 @@ func _ground_physics(_delta: float) -> void:
 func _air_physics(delta: float) -> void:
 	var player_pos = Game.get_manager().get_player().position
 	var direction = position.direction_to(player_pos)
-	if walking:
+	if walking and not Game.get_manager().is_player_dead():
 		velocity = direction * delta * move_speed * 100
 
 func _physics_process(delta: float) -> void:
@@ -72,7 +72,7 @@ func _on_attack_timer_timeout() -> void:
 		bullet.set_damage(attack_power)
 		bullet.set_target_type(Bullet.target_type.PLAYER)
 	else:
-		if target:
+		if target and target.health > 0:
 			target.take_damage(attack_power)
 
 func _on_melee_body_entered(body: Node2D) -> void:

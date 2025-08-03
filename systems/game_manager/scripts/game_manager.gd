@@ -22,6 +22,7 @@ func _ready() -> void:
 	add_level('test_level_alpha')
 	add_player_on_marker()
 	add_enemies_on_level()
+	add_ui("game_over")
 
 func add_player(pos: Vector2) -> void:
 	var player_to_add: CharacterBody2D = load(player_packed_scene.resource_path).instantiate()
@@ -81,3 +82,13 @@ func add_projectile(pos: Vector2, destination: Vector2, name: String) -> Bullet:
 	bullet_scene.destination = destination
 	projectile_holder.add_child(bullet_scene)
 	return bullet_scene
+	
+func add_ui(ui_name: String) -> void:
+	var ui_path = str("res://ui/", ui_name, "/scenes/", ui_name, ".tscn")
+	var ui_scene = load(ui_path).instantiate()
+	ui_scene.hide()
+	ui_holder.add_child(ui_scene)
+	
+func get_ui(ui_name: String) -> CanvasLayer:
+	var ui_scene = ui_holder.get_node(ui_name)
+	return ui_scene

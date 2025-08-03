@@ -37,5 +37,6 @@ func set_target_type(entity_type: target_type) -> void:
 	self.type = entity_type
 
 func damage_target(body: Entity) -> void:
-	body.take_damage(damage)
+	if body.health > 0:
+		body.take_damage(damage)
 	queue_free()

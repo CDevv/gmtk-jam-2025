@@ -9,4 +9,7 @@ extends CharacterBody2D
 func take_damage(damage: int) -> void:
 	health -= damage
 	if (health <= 0):
-		queue_free()
+		on_death()
+		
+func on_death() -> void:
+	queue_free()

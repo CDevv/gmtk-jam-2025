@@ -47,7 +47,9 @@ func _ground_physics(delta: float) -> void:
 	_directional_tilt_and_heading(delta)
 
 func _animate_player() -> void:
-	if velocity.x != 0.0 and is_on_floor():
+	if health <= 0:
+		%PlayerSprite.play("death")
+	elif velocity.x != 0.0 and is_on_floor():
 		%PlayerSprite.play("walk")
 	elif velocity.x == 0.0 and is_on_floor():
 		%PlayerSprite.play("idle")
@@ -88,6 +90,9 @@ func _shoot_check() -> void:
 			bullet_delayed = false
 
 func _physics_process(delta: float) -> void:
+	if (health <= 0):
+		return
+	
 	Game.game_manager._move_cam_to_target(self)
 	_shoot_check()
 	_animate_player()
@@ -105,3 +110,9 @@ func take_damage(damage: int) -> void:
 	dmg_tween.tween_property(%PlayerSprite, "modulate", Color.FIREBRICK, 0.25)
 	dmg_tween.tween_property(%PlayerSprite, "modulate", Color.WHITE, 0.25)
 	dmg_tween.play()
+	
+func on_death() -> void:
+	%PlayerSprite.speed_scale = 1
+	%PlayerSprite.play("death")
+	await %PlayerSprite.animation_finished
+	Game.get_manager().get_ui("GameOver").show()
