@@ -7,8 +7,9 @@ extends Entity
 
 @export_category('Exported node references')
 @export var player_visuals: Node2D
+@export var gun_visuals: Node2D
 
-var has_wings: bool = true
+var has_wings: bool = false
 var bullet_delayed: bool = false
 var is_flipped: bool = false
 
@@ -57,6 +58,15 @@ func _animate_player() -> void:
 
 	%PlayerSprite.speed_scale = velocity.x * 0.015
 
+func _tilt_gun() -> void:
+	var mouse_pos = get_global_mouse_position()
+	gun_visuals.look_at(mouse_pos)
+	var gun_sprite: Sprite2D = gun_visuals.get_node("GunSprite")
+	if get_local_mouse_position().x < 0:
+		gun_sprite.flip_v = true
+	else:
+		gun_sprite.flip_v = false
+
 func _directional_tilt_and_heading(delta: float) -> void:
 	player_visuals.rotation = lerp(player_visuals.rotation, velocity.x * 0.015, delta * 2.5)
 	player_visuals.rotation = clamp(player_visuals.rotation, -deg_to_rad(10), deg_to_rad(10))
@@ -81,6 +91,7 @@ func _physics_process(delta: float) -> void:
 	Game.game_manager._move_cam_to_target(self)
 	_shoot_check()
 	_animate_player()
+	_tilt_gun()
 	if is_on_floor():
 		_ground_physics(delta)
 	else:

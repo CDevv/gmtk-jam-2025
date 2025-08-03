@@ -12,6 +12,9 @@ class_name GameManager
 @export_category('Predefined spawnable scenes')
 @export var player_packed_scene: PackedScene
 
+@export_category('References')
+@export var level: Level
+
 enum EnemyType { ZOMBIE, GHOST, KNIGHT_GHOST, FAT_GHOST }
 
 func _ready() -> void:
@@ -34,6 +37,7 @@ func add_level(level_name: String) -> void:
 		var resource_full_path = str("res://levels/", level_name, ".tscn")
 		var level_scene = load(resource_full_path).instantiate()
 		level_holder.add_child(level_scene)
+		self.level = level_scene as Level
 	else:
 		for child in level_holder.get_children():
 			child.queue_free()
@@ -52,14 +56,20 @@ func add_enemies_on_level() -> void:
 	var enemy_min_x = level.get_node("EnemyMarkerStart").position.x
 	var enemy_max_x = level.get_node("EnemyMarkerEnd").position.x
 	var enemy_y = level.get_node("EnemyMarkerStart").position.y
-	for i in range(1, 10):
+	for i in range(1, level.enemy_count):
 		var chosen_x = randi_range(enemy_min_x, enemy_max_x)
 		var chosen_pos = Vector2(chosen_x, enemy_y)
-		var chosen_type = EnemyType.keys().pick_random().to_lower()
+		var allowed_enemies: Array[String]
+		if level.allowed_enemies and "Zombie":
+			allowed_enemies.push_back("Zombie")
+		var chosen_type = allowed_enemies.pick_random().to_lower()
 		add_enemy(chosen_pos, chosen_type)
 
 func _move_cam_to_target(target: Node2D) -> void:
 	camera.global_position = target.global_position
+
+func is_player_dead() -> bool:
+	return player_holder.get_child(0).health > 0
 
 func get_player() -> Player:
 	return player_holder.get_child(0)

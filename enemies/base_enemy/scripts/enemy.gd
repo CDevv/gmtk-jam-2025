@@ -9,15 +9,17 @@ enum AttackType { MELEE, RANGED }
 var sprite: AnimatedSprite2D
 var target: Player
 var walking: bool = true
+var attack_timer: Timer
 
 func _ready() -> void:
 	sprite = get_node("EnemySprite")
 	sprite.sprite_frames = sprite_frames
+	attack_timer = get_node("AttackTimer")
 	
 	if (type == AttackType.MELEE):
-		$AttackTimer.autostart = false
+		attack_timer.autostart = false
 	else:
-		$AttackTimer.autostart = true
+		attack_timer.autostart = true
 
 # returns true if Player's X is greater, otherwise false
 func _get_dir() -> bool:
@@ -77,12 +79,12 @@ func _on_melee_body_entered(body: Node2D) -> void:
 	if body is Player:
 		target = body
 		walking = false
-		%AttackTimer.start()
+		attack_timer.start()
 
 func _on_melee_body_exited(body: Node2D) -> void:
 	if body is Player:
 		if type == AttackType.MELEE:
-			%AttackTimer.stop()
+			attack_timer.stop()
 		target = null
 		walking = true
 

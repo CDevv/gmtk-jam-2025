@@ -20,7 +20,6 @@ move_speed = 100
 attack_power = 1
 
 [node name="AttackTimer" type="Timer" parent="."]
-unique_name_in_owner = true
 autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
