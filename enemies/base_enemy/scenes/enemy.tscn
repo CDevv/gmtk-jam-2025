@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://fdtudb722w5c"]
 
-[ext_resource type="Script" uid="uid://6m4makbt0whq" path="res://enemies/blob/scripts/enemy.gd" id="1_edq6g"]
+[ext_resource type="Script" uid="uid://6m4makbt0whq" path="res://enemies/base_enemy/scripts/enemy.gd" id="1_edq6g"]
 [ext_resource type="SpriteFrames" uid="uid://2ws2huumcejy" path="res://resources/enemies/zombie-anims.tres" id="2_exaow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hc4ed"]

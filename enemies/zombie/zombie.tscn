@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bplrce1sw6po7"]
+
+[ext_resource type="PackedScene" uid="uid://fdtudb722w5c" path="res://enemies/base_enemy/scenes/enemy.tscn" id="1_r1owf"]
+[ext_resource type="SpriteFrames" uid="uid://2ws2huumcejy" path="res://resources/enemies/zombie-anims.tres" id="2_hfuf0"]
+
+[node name="Zombie" instance=ExtResource("1_r1owf")]
+sprite_frames = ExtResource("2_hfuf0")

@@ -4,34 +4,61 @@ extends Entity
 enum AttackType { MELEE, RANGED }
 
 @export var type: AttackType = AttackType.RANGED
+@export var is_flying: bool = false
+@export var sprite_frames: SpriteFrames = load("res://resources/enemies/zombie-anims.tres")
 var sprite: AnimatedSprite2D
 var target: Player
 var walking: bool = true
 
 func _ready() -> void:
 	sprite = get_node("EnemySprite")
+	sprite.sprite_frames = sprite_frames
 	
 	if (type == AttackType.MELEE):
 		$AttackTimer.autostart = false
 	else:
 		$AttackTimer.autostart = true
 
-func _physics_process(delta: float) -> void:
-	velocity.y += gravity * delta
-
-	velocity.x = 0
-
+# returns true if Player's X is greater, otherwise false
+func _get_dir() -> bool:
 	var player_x = Game.get_manager().get_player().position.x
 	var this_x = position.x
+	if (player_x > this_x): return true
+	else: return false
 
+func _animate() -> void:
+	var dir = _get_dir()
+	
 	if walking:
 		sprite.play("walk")
-		if player_x > this_x:
-			velocity.x += move_speed
+		if dir: 
 			sprite.flip_h = false
-		elif player_x < this_x:
-			velocity.x -= move_speed
+		else:
 			sprite.flip_h = true
+
+func _ground_physics(_delta: float) -> void:
+	var dir = _get_dir()
+	
+	if walking:
+		if dir:
+			velocity.x += move_speed
+		else:
+			velocity.x -= move_speed
+
+func _air_physics(delta: float) -> void:
+	var player_pos = Game.get_manager().get_player().position
+	var direction = position.direction_to(player_pos)
+	velocity = direction * delta * move_speed * 100
+
+func _physics_process(delta: float) -> void:
+	velocity.y += gravity * delta
+	velocity.x = 0
+
+	_animate()
+	if not is_flying:
+		_ground_physics(delta)
+	else:
+		_air_physics(delta)
 
 	move_and_slide()
 
@@ -58,7 +85,6 @@ func _on_melee_body_exited(body: Node2D) -> void:
 func take_damage(damage: int) -> void:
 	health -= damage
 	if (health <= 0):
-		print("death")
 		walking = false
 		sprite.play("death")
 		await sprite.animation_finished
